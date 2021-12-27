@@ -61,14 +61,17 @@ alors on enlève 1 à i pour
 def somme_ss_ensemble2(L, c):
 	A, i, j = [0]*len(L), len(L), c
 	M = mat_bool(L, c)
-	while i > 0:
-		if M[i][j] == M[i-1][j]:
-			i -= 1
-		else:
-			A[i] += 1
-			j -= L[i]
-	A[0] += j
-	return A
+	if M[i][j]:
+		while i > 0:
+			if M[i][j] == M[i-1][j]:
+				i -= 1
+			else:
+				A[i] += 1
+				j -= L[i]
+		A[0] += j
+		return A
+	else:
+		return -1
 
 print(somme_ss_ensemble2([3, 1], 4))
 
