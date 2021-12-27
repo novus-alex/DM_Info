@@ -38,13 +38,13 @@ Sinon, on prend l'entier Xi-1 donc Bi,j = Bi-1,j-X(i-1) car on enlève le dernie
 
 #Q5
 def mat_bool(L, c):
-	m = [[False]*(c+1)]*(len(L)+1)
+	m = [[False]*(c+1) for _ in range(len(L) + 1)]
 	for i in range(len(L)+1):
-		for j in range(c+1):
-			if j == 0:
-				m[i][j] = True
-			elif i == 0 and j >= 1:
-				m[i][j] = False
+		m[i][0] = True
+	for i in range(len(L)+1):
+		for j in range(1, c+1):
+			if i == 0:
+				m[0][j] = False
 			elif L[i-1] > j:
 				m[i][j] = m[i-1][j]
 			else:
@@ -53,25 +53,29 @@ def mat_bool(L, c):
 
 #Q6
 """
-On prend i=n et j=c, tant que i est strictement positif, on regarde si M[i][j] est égale a M[i-1][j], si c'est le cas,
-alors on enlève 1 à i pour 
+Soit M la matrice calculer avec L et c, on prend i=n et j=c, tant que i est strictement positif, on regarde si M[i][j] est égale a M[i-1][j], si c'est le cas,
+alors on enlève 1 à i, sinon on ajoute 1 a une liste A de taille n à l'indice i-1 et on remplace j par j - L[i-1].
+On aura alors une liste nous donnant la positions des entiers dont la somme fais c.
+Il reste plus qu'à reprendre ces indices dans la liste L et on auras la liste des éléments dont la somme fais c.
 """
 
 #Q7
 def somme_ss_ensemble2(L, c):
-	A, i, j = [0]*len(L), len(L), c
+	A, r, i, j = [0]*len(L), [], len(L), c
 	M = mat_bool(L, c)
-	if M[i][j]:
+	if M[len(L)][c]:
 		while i > 0:
 			if M[i][j] == M[i-1][j]:
 				i -= 1
 			else:
-				A[i] += 1
-				j -= L[i]
-		A[0] += j
-		return A
+				A[i-1] += 1
+				j -= L[i-1]
+		for p in range(len(A)):
+			if A[p]:
+				r.append(L[p])
+		return r
 	else:
 		return -1
 
-print(somme_ss_ensemble2([3, 1], 4))
+#Q8
 
