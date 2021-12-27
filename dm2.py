@@ -31,7 +31,7 @@ La fonction somme_ss_ensemble est de complexité O(n*2**n)
 
 #Q4
 """
-Si Xi-1 > j, alors il n'est pas possible d'exprimer Bi,j car X0,...,Xi-1 > j donc on doit forcément prendre au maximu Xi-2, ce qui correspond à Bi-1,j.
+Si Xi-1 > j, alors il n'est pas possible d'exprimer Bi,j car X0,...,Xi-1 > j donc on doit forcément prendre au maximum Xi-2, ce qui correspond à Bi-1,j.
 Sinon, on prend l'entier Xi-1 donc Bi,j = Bi-1,j-X(i-1) car on enlève le dernier entier pris ou Bi-1,j si on décide de ne pas prendre l'entier Xi
 """
 
@@ -99,9 +99,7 @@ def somme_rec(L, c):
 		return False
 	elif somme_rec(L[:-1], c):
 		return True
-	elif c > L[-1]:
+	elif c >= L[-1]:
 		return somme_rec(L[:-1], c-L[-1])
 	else:
-		return True
-
-print(somme_rec([0, 3, 2], 5))
+		return somme_rec(L[:-1], c)
