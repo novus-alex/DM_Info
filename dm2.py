@@ -6,7 +6,6 @@ Hachet Alexandre 833
 
 # Q1
 def binaire(p, n):
-	#assert 0 <= p and p <= 2**n - 1
 	bin_ = [0]*n
 	for i in range(n):
 		bin_[i] = p%2
@@ -78,4 +77,31 @@ def somme_ss_ensemble2(L, c):
 		return -1
 
 #Q8
+"""
+On remarque que sans l'appel de mat_bool, notre fonction est de complexité O(n + c) car a chaque étape de la boucle while,
+la quantité i + j décroît strictement. Or la focntion mat_bool a une complexité O(n*c), c'est donc cette fonction qui
+donne la complexité O(n*s) à notre fonction somme_ss_ensemble2.
+"""
 
+#Q9
+"""
+On se rend compte que la première fonction somme_ss_ensemble est beacoup plus couteuse que la deuxième.
+En effet en prennant n = len(L), sa complexité étant de O(n*2**n), elle est beaucoup plus grande que O(n*c).
+On peut donc envisager que la première méthode sera plus efficace que la deuxième si la taille de L n'est pas trop grande,
+sinon, il sera préférable de choisir la deuxième méthode.
+"""
+
+#Q10
+def somme_rec(L, c):
+	if c == 0:
+		return True
+	elif L == []:
+		return False
+	elif somme_rec(L[:-1], c):
+		return True
+	elif c > L[-1]:
+		return somme_rec(L[:-1], c-L[-1])
+	else:
+		return True
+
+print(somme_rec([0, 3, 2], 5))
