@@ -72,9 +72,9 @@ def somme_ss_ensemble2(L, c):
 		for p in range(len(A)):
 			if A[p]:
 				r.append(L[p])
-		return r
+		return True, r
 	else:
-		return -1
+		return False, []
 
 #Q8
 """
