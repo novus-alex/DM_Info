@@ -5,9 +5,6 @@ Hachet Alexandre 833
 """
 
 # Q1
-from audioop import add
-
-
 def verifie_01(L):
     for i in L:
         if i != 0 and i != 1:
