@@ -85,10 +85,17 @@ def additionneur(L, M):
 def complementaire(M):
     return [1 if _ == 0 else 0 for _ in M]
 
-"""def soustracteur(L, M):
+"""
+Soit (An) tel que Nm = An-1....A0 et (Bn) tel que Nm(comp) = Bn-1.....B0 avec (An) et (Bn) à valeurs dans {0,1}
+D'après la définition du complémentaire, pour tout k <= n-1, Ak != Bk donc comme (An) et (Bn) sont à valeurs dans {0,1},
+On a Ak + Bk = 1, d'où Nm + Nm(comp) = (An-1+Bn-1)....(A0+B0) = 11....1 en base 2, ce qui est égale a -1 en décimal.
+On a donc Nm + Nm(comp) = -1 ce qui équivaut à Nm(comp) + 1 = -Nm
+"""
+
+def soustracteur(L, M):
     result = addition_listes(L, complementaire(M), 1)
     if result[1] != result[2]:
         print("Dépassement sur les entiers relatifs")
     return result[0]
 
-print(soustracteur([0, 1, 0, 1, 0, 1, 1], [0, 1, 0, 1, 0, 1, 1]))"""
+print(soustracteur([0, 1, 0, 1, 0, 1, 1], [0, 1, 0, 1, 0, 1, 1]))
