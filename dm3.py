@@ -57,6 +57,8 @@ def addition1(a, b):
 # Q7
 def addition2(a, b, c):
     add1 = addition1(a, b)
+    if add1[0]+c == 2:
+        return 0, 1
     return add1[0]+c, add1[1]
 
 # Q8
@@ -94,8 +96,6 @@ On a donc Nm + Nm(comp) = -1 ce qui équivaut à Nm(comp) + 1 = -Nm
 
 def soustracteur(L, M):
     result = addition_listes(L, complementaire(M), 1)
-    if result[1] != result[2]:
+    if result[2] == result[0][0]:
         print("Dépassement sur les entiers relatifs")
     return result[0]
-
-print(soustracteur([0, 1, 0, 1, 0, 1, 1], [0, 1, 0, 1, 0, 1, 1]))
